@@ -517,7 +517,7 @@ static int do_flags_test() {
 	int rc = 0;
 	unsigned int i;
 	uint16_t dest, tmp;
-	char src[512];
+	char src[512] = { 0 };
 
 	if ((do_flags(NULL, src, strlen(src)) == 0) ||
 	    (do_flags(&dest, NULL, strlen(src)) == 0)) {
@@ -563,8 +563,11 @@ static int do_flags_test() {
 	return rc;
 }
 
-static int dummy_handler(void *dest, const char *src, size_t max_len)
+static int dummy_handler(void *dest, const char * src, size_t max_len)
 {
+	(void)dest;
+	(void)src;
+	(void)max_len;
 	return -1;
 }
 
