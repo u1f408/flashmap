@@ -82,7 +82,7 @@ static char *extract_value(const char *line, size_t len) {
 
 static int do_strcpy(void *dest, const char *src, size_t max_len)
 {
-	if (!dest || !src || (strlen(src) > max_len))
+	if (!dest || !src || (strlen(src) > max_len) || (max_len > UINT32_MAX - 1))
 		return -1;
 
 	strncpy(dest, src, max_len);
